@@ -1,0 +1,27 @@
+﻿@page "/delete-student"
+
+<PageTitle>Delete Student</PageTitle>
+
+<h2>Delete Student</h2>
+
+<EditForm OnSubmit="DeleteStudent">
+    <input type="number" placeholder="Enter Student ID to Delete" @bind-value="studentID" />
+    <button type="submit">Delete</button>
+</EditForm>
+
+@code {
+    private int studentID;
+
+    private void DeleteStudent()
+    {
+        if (studentID > 0)
+        {
+            StudentDAL.DeleteStudent(studentID);
+            Console.WriteLine($"Student with ID {studentID} deleted successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Invalid Student ID.");
+        }
+    }
+}

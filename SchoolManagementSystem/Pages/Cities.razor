@@ -1,0 +1,20 @@
+﻿@page "/city"
+<PageTitle>City Management</PageTitle>
+
+<EditForm Model="cityModel" OnSubmit="SaveCity">
+    <input type="number" placeholder="Enter City Code" @bind-value="cityModel.CityCode" />
+    <input type="text" placeholder="Enter City Name" @bind-value="cityModel.CityName" />
+    <input type="radio" placeholder="Is Active" @bind-value="cityModel.IsActive" />
+    <input type="datetime" placeholder="DateTime" @bind-value="cityModel.CreationDateTime" />
+    <button type="submit">Save</button>
+
+</EditForm>
+
+@code{
+    CityModel cityModel { get; set; } = new CityModel();
+
+    private void SaveCity()
+    {
+        CityDAL.SaveCity(cityModel);
+    }
+}

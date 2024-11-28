@@ -1,0 +1,25 @@
+﻿@page "/add"
+
+<PageTitle>Student Entry Form</PageTitle>
+
+<h1>Enter Student Data</h1>
+
+<EditForm Model="studentModel" OnSubmit="SaveStudent">
+    <input type="text" placeholder="Enter Student Name" @bind-value="studentModel.StudentName" />
+    <input type="number" placeholder="Enter Age" @bind-value="studentModel.Age" />
+    <input type="text" placeholder="Enter Gender (Male/Female)" @bind-value="studentModel.Gender" />
+    <input type="email" placeholder="Enter Email" @bind-value="studentModel.Email" />
+    <input type="date" placeholder="Enrollment Date" @bind-value="studentModel.EnrollmentDate" />
+    <button type="submit">Save</button>
+</EditForm>
+
+@code {
+    // Model object for binding form data
+    StudentModel studentModel { get; set; } = new StudentModel();
+
+    // Method to save student data
+    private void SaveStudent()
+    {
+        StudentDAL.SaveStudent(studentModel);
+    }
+}

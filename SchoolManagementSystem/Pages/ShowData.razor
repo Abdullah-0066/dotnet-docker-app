@@ -1,0 +1,47 @@
+﻿@page "/show-students"
+
+<PageTitle>Student List</PageTitle>
+
+<h2>All Students</h2>
+
+@if (studentsList == null || studentsList.Count == 0)
+{
+    <p>No student data available.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Email</th>
+                <th>Enrollment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in studentsList)
+            {
+                <tr>
+                    <td>@student.StudentID</td>
+                    <td>@student.StudentName</td>
+                    <td>@student.Age</td>
+                    <td>@student.Gender</td>
+                    <td>@student.Email</td>
+                    <td>@student.EnrollmentDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<StudentModel> studentsList;
+
+    protected override void OnInitialized()
+    {
+        studentsList = StudentDAL.GetAllStudents();
+    }
+}
