@@ -1,9 +1,7 @@
-
-
 # Step 1: Build the application
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 WORKDIR /app
-EXPOSE 80
+EXPOSE 5000
 
 # Copy project files
 COPY *.csproj .
@@ -21,4 +19,5 @@ WORKDIR /app
 COPY --from=build /publish .
 
 # Specify the entry point for the app
-ENTRYPOINT ["dotnet", "tSchoolManagementSystem.dll"]
+ENTRYPOINT ["dotnet", "SchoolManagementSystem.dll"]
+
